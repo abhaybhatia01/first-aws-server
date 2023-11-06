@@ -1,17 +1,561 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
+<html lang="en" class="root">
+    <head >
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Abhay Bhatia</title>
+        <link rel="icon" href="/asset/logo.svg" type="image/x-icon">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="./css/animeJs.css" />
+        <link rel="stylesheet" href="./css/loader.css" />
+        <link rel="stylesheet" href="./css/cursor.css" />
+        <link rel="stylesheet" href="./css/generalStyles.css" />
+        <script src="./js/animate.js"></script>
+        <script src="./js/loader.js"></script>
+        <style>
+            /* .char{
+                transition: transform 0.5s;
+                display: inline-block;
+            } */
+            .text-up{
+                display: flex;
+                clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+            }
+            .char{
+                display: inline-block;
+                transform: translateY(120%);
+            }
+            .hero-joke-container{
+                display: flex;
+                clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+            }
+            .hero-joke{
+                opacity: 0;
+            }
+        </style> 
 
-    <script>
-        let ws ;
-        const proto = window.location.protocol === "https:" ? "wss" :"ws";
-        ws = new WebSocket(`${proto}://${window.location.host}`);
-        ws.onmessage= (event)=>{ console.log(event.data); };
-    </script>
-</body>
+
+    </head>
+    <body  >
+
+            <div class="loader ">
+                <div class="spinner">
+                    <div class="double-bounce1 loading-active"></div>
+                    <div class="double-bounce2 loading-active"></div>
+                </div>
+            </div>
+            <div class="cursor-wrapper">
+                <div class="cursor">
+                    <img class="cursor-arrow " src="./asset/arrow.svg" alt="" srcset="">
+                </div>
+                <img class="cusrosr-view-product " src="./asset/view_product.svg" alt="" srcset="">
+            </div>
+            <nav>
+                <div class="nav-page-wraper">
+                    <div class="nav-page">
+                        <div class="nav-items">
+                            <a class="nav-item" href=""><span>links</span></a>
+
+                            <a class="nav-item" href=""><span>links</span></a>
+                             <span class="nav-item theme-toggle">theme toggle </span>
+                             <span class="nav-item theme-reset">system theme</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="nav-wraper big-cursor">
+                    <div class="nav-lines">
+                        <div class="nav-line line1"></div>    
+                        <div class="nav-line line2"></div>    
+                    </div>
+                </div>
+            </nav>
+
+            <main class="main-content ">
+                
+                <a href="">
+                    <div class="logo-wraper ">
+                        <div class="logo big-cursor">
+                            <!-- <object type="image/svg+xml" alt="logo" class="svg" fill="var(--current-color)" data="/asset/logo.svg"></object> -->
+                            <svg width="20" height="19" viewBox="0 0 20 19" class="svg"  xmlns="http://www.w3.org/2000/svg">
+                                <path d="M2.2628 8.99998H0.285522L3.29831 0.272705H5.67615L8.68467 8.99998H6.7074L4.52132 2.26702H4.45314L2.2628 8.99998ZM2.13922 5.56958H6.80967V7.00992H2.13922V5.56958Z" />
+                                <path d="M9.7951 8.99998V0.272705H16.2894C16.9315 0.272705 17.467 0.367876 17.896 0.558217C18.3249 0.748558 18.6474 1.01276 18.8633 1.35083C19.0792 1.68606 19.1871 2.07242 19.1871 2.50992C19.1871 2.85083 19.119 3.15055 18.9826 3.40907C18.8462 3.66475 18.6587 3.87498 18.4201 4.03975C18.1843 4.20168 17.9144 4.31674 17.6104 4.38492V4.47015C17.9428 4.48435 18.2539 4.5781 18.5437 4.7514C18.8363 4.92469 19.0735 5.16759 19.2553 5.48009C19.4371 5.78975 19.5281 6.15907 19.5281 6.58805C19.5281 7.05111 19.413 7.46447 19.1829 7.8281C18.9556 8.1889 18.619 8.47441 18.1729 8.68464C17.7269 8.89486 17.1772 8.99998 16.5238 8.99998H9.7951ZM11.6403 7.49146H16.1445C16.6587 7.49146 17.0337 7.39344 17.2695 7.19742C17.5053 6.99856 17.6232 6.73435 17.6232 6.40481C17.6232 6.16333 17.565 5.95026 17.4485 5.7656C17.332 5.58094 17.1658 5.43606 16.9499 5.33094C16.7369 5.22583 16.4826 5.17327 16.1871 5.17327H11.6403V7.49146ZM11.6403 3.92469H16.0082C16.261 3.92469 16.4854 3.88066 16.6815 3.79259C16.8803 3.70168 17.0366 3.57384 17.1502 3.40907C17.2667 3.2443 17.3249 3.04685 17.3249 2.81674C17.3249 2.5014 17.2127 2.24714 16.9883 2.05396C16.7667 1.86077 16.4513 1.76418 16.0423 1.76418H11.6403V3.92469Z" />
+                                <path d="M0.758534 19V10.2727H7.25285C7.8949 10.2727 8.43041 10.3679 8.85939 10.5582C9.28836 10.7486 9.61081 11.0128 9.82672 11.3508C10.0426 11.6861 10.1506 12.0724 10.1506 12.5099C10.1506 12.8508 10.0824 13.1505 9.94603 13.4091C9.80967 13.6648 9.62217 13.875 9.38353 14.0398C9.14774 14.2017 8.87785 14.3167 8.57388 14.3849V14.4701C8.90626 14.4844 9.21734 14.5781 9.50711 14.7514C9.79973 14.9247 10.0369 15.1676 10.2188 15.4801C10.4006 15.7898 10.4915 16.1591 10.4915 16.588C10.4915 17.0511 10.3764 17.4645 10.1463 17.8281C9.91905 18.1889 9.5824 18.4744 9.13637 18.6846C8.69035 18.8949 8.14064 19 7.48723 19H0.758534ZM2.6037 17.4915H7.10797C7.62217 17.4915 7.99717 17.3934 8.23297 17.1974C8.46876 16.9986 8.58666 16.7344 8.58666 16.4048C8.58666 16.1633 8.52842 15.9503 8.41194 15.7656C8.29547 15.5809 8.12927 15.4361 7.91336 15.3309C7.7003 15.2258 7.44603 15.1733 7.15058 15.1733H2.6037V17.4915ZM2.6037 13.9247H6.9716C7.22444 13.9247 7.44887 13.8807 7.6449 13.7926C7.84376 13.7017 8.00001 13.5738 8.11365 13.4091C8.23012 13.2443 8.28836 13.0469 8.28836 12.8167C8.28836 12.5014 8.17615 12.2471 7.95172 12.054C7.73012 11.8608 7.41478 11.7642 7.00569 11.7642H2.6037V13.9247Z" />
+                                <path d="M11.2408 10.2727H13.3075L15.2976 14.0312H15.3828L17.3729 10.2727H19.4396L16.2564 15.9148V19H14.424V15.9148L11.2408 10.2727Z" />
+                            </svg>
+                        </div>
+                    </div>
+                </a>
+                
+                <header class="hero ">
+                    <div class="container">
+                        <div class="hero-text-wrap "> 
+                            <div class="hero-graating-container" >
+                                <h2 class="hero-head hero-hi text-up">hi,</h2>
+                                <h2 class="hero-head hero-im text-up">i'm</h2>
+                            </div>
+                            <div class="hero-name-joke-spacer">
+                                <div  class=" hero-head-name ">
+                                    <h1 class="hero-head hero-abhay text-up">abhay </h1>
+                                    <h1 class="hero-head hero-bhatia text-up"> bhatia</h1>
+                                    <!-- <h2 class="hero-asterisk ">*</h2> -->
+                                </div>
+                                <div class="hero-joke-container">
+                                    <p class="hero-joke">* ACTUALLY, I'M A WEBSITE.</p>
+                                    <p class="hero-joke">BUT I WAS BUILT BY ABHAY BHATIA.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </header >
+                    
+                <section class ="horizontal-text-wraper ">
+                    <div class="skew-item">
+                        <div class="sentence-wraper">
+                            <div class="sentence sentence-forward">
+                                <span class="word fancy big-cursor"> scroll</span>
+                                <span class="word  "> to</span>
+                                <span class="word fancy big-cursor"> see</span>
+                                <span class="word "> my</span>
+                                <span class="word fancy big-cursor"> projects</span>
+                                <span class="word "> scroll</span>
+                                <span class="word fancy big-cursor"> to</span>
+                                <span class="word "> see</span>
+                                <span class="word fancy big-cursor"> my</span>
+                                <span class="word "> projects</span>
+                                <span class="word fancy big-cursor"> scroll</span>
+                                <span class="word  "> to</span>
+                                <span class="word fancy big-cursor"> see</span>
+                                <span class="word  "> my</span>
+
+                                <span class="word fancy big-cursor"> projects</span>
+                        
+
+                            </div>
+                        </div>
+                        <div class="sentence-wraper">
+                            <div class="sentence sentence-invert">
+                                <span class="word "> let</span>
+                                <span class="word "> me</span>
+                                <span class="word "> tell</span>
+                                <span class="word "> you</span>
+                                <span class="word "> a</span>
+                                <span class="word "> story</span>
+                                <span class="word "> through</span>
+                                <span class="word "> this</span>
+                                <span class="word "> amazing</span>
+                                <span class="word "> site</span>
+                                <span class="word "> built</span>
+                                <span class="word "> by</span>
+                                <span class="word "> me.</span>
+                            </div>
+                        </div>
+                        <div class="sentence-wraper">
+                            <div class="sentence sentence-forward">
+                                
+
+                                <span class="word "> scroll</span>
+                                <span class="word fancy big-cursor"> to</span>
+                                <span class="word "> see</span>
+                                <span class="word fancy big-cursor"> my</span>
+                                <span class="word "> projects</span>
+                                <span class="word fancy big-cursor"> scroll</span>
+                                <span class="word "> to</span>
+                                <span class="word fancy big-cursor"> see</span>
+                                <span class="word "> my</span>
+                                <span class="word fancy big-cursor"> projects</span>
+                                <span class="word "> scroll</span>
+                                <span class="word fancy big-cursor"> to</span>
+                                <span class="word "> see</span>
+                                <span class="word fancy big-cursor"> my</span>
+                                <span class="word "> projects</span>
+                            </div>
+                        </div>
+                </div>
+                </section>
+
+
+                <section class="projects-section">
+                    <div class=" projects-section-container">
+
+                        <div data-color="#76CEDF" class="project-wraper product-cursor">
+                            <div  class="project">
+                                <div class="media-wrapper">
+                                    <img  class ="project-media" src="./asset/poject_images/bank_app.png" alt="">
+                                </div>
+                                <div class="project-name-wraper">
+                                    <div class="name-overflow-hidden">                                    
+                                        <div class="project-name"> name of project</div>
+                                    </div>
+                                </div>
+                                <div class="project-tags-wrapper">
+                                    <div class="tags-overflow-hidden">                                    
+                                        <div class="tag">something0 1</div>
+                                        <div class="tag">tag 2</div>
+                                    </div>
+                                </div>
+                            </div>
+                       </div>
+                        <div data-color="#C0C0C0" class="project-wraper product-cursor">
+                            <div  class="project">
+                                <div class="media-wrapper">
+                                    <img  class ="project-media" src="./asset/poject_images/allCamp_app.png" alt="">
+                                </div>
+                                <div class="project-name-wraper">
+                                    <div class="name-overflow-hidden">                                    
+                                        <div class="project-name"> name of project</div>
+                                    </div>
+                                </div>
+                                <div class="project-tags-wrapper">
+                                    <div class="tags-overflow-hidden">                                    
+                                        <div class="tag">something0 1</div>
+                                        <div class="tag">tag 2</div>
+                                    </div>
+                                </div>
+                            </div>
+                       </div>
+                       <div data-color="#5A5A5A" class="project-wraper product-cursor">
+                            <div  class="project">
+                                <div class="media-wrapper">
+                                    <img  class ="project-media" src="./asset/poject_images/bank_app.png" alt="">
+                                </div>
+                                <div class="project-name-wraper">
+                                    <div class="name-overflow-hidden">                                    
+                                        <div class="project-name"> name of project</div>
+                                    </div>
+                                </div>
+                                <div class="project-tags-wrapper">
+                                    <div class="tags-overflow-hidden">                                    
+                                        <div class="tag">something0 1</div>
+                                        <div class="tag">tag 2</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                            
+                       
+
+
+                    </div>
+                </section>
+                
+                <div class="footer-cta-text-wrapper big-cursor">
+                    <h1 class="headline contact-cta-text">let's</h1>
+                    <div class="text-switch-clip ">
+                        <h1 class="text-switch contact-cta-text">meet</h1>
+                    </div>
+                </div>
+
+            </main>
+
+
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+
+            <script src="./js/cursor.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.19/bundled/lenis.min.js"></script> 
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+
+
+            <script>
+                                
+                gsap.registerPlugin(ScrollTrigger);
+                const isDesktop = window.matchMedia("(min-width: 767px)").matches;
+                if(isDesktop){
+                    // lenis for smooth scroll
+                    const lenis = new Lenis()
+                        // lenis.on('scroll', (e) => {console.log(e)})
+
+                        function raf(time) {
+                        lenis.raf(time)
+                        requestAnimationFrame(raf)
+                        }
+                        requestAnimationFrame(raf)
+
+                }
+ 
+
+
+
+                // nav toggle 
+                const body = document.querySelector('body');
+                const navWraper = document.querySelector('.nav-wraper');
+                const line1 = document.querySelector('.line1');
+                const line2 = document.querySelector('.line2');
+                navWraper.addEventListener('click',()=>{
+                    body.classList.toggle('nav-active');
+                })
+                
+
+                // theme toggle 
+                const themeToggle = document.querySelector('.theme-toggle')
+                const root = document.querySelector('.root')
+                themeToggle.addEventListener('click',()=>{
+                    if(root.classList.contains("dark-theme")){
+                        localStorage.setItem('color-scheme','light');
+                        setTheme();
+                    }else{
+                        localStorage.setItem('color-scheme','dark');
+                        setTheme();
+                    }
+                })
+                //theme reset
+                const themeReset = document.querySelector('.theme-reset')
+                themeReset.addEventListener('click',()=>{
+                    const theme = localStorage.getItem('color-scheme');
+                    localStorage.removeItem('color-scheme');
+                    setTheme()
+                })
+                // viewing changes of theme in window
+                window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', ({ matches }) => {
+                    setTheme()
+                });
+
+                // splitig text  for animation
+                function textSplit() {
+                    let textWrapper = document.querySelectorAll(".text-up");
+                    textWrapper.forEach(text =>{
+                        text.innerHTML = text.textContent.replace( /./g , "<span class='char'>$&</span>");
+                    })
+                }
+                textSplit();
+
+                //fadeup
+                var animateUp = anime.timeline({ loop: false, autoplay:false  })
+                animateUp.add({
+                    targets: " .char , .hero-joke,.horizontal-text-wraper ",
+                    translateY: [120, 0],
+                    translateZ: 0,
+                    opacity: [0, 1],
+                    easing: "easeOutExpo",
+                    duration: 1600,
+                    delay: (el, i) => 300 + 30 * i,
+                })   
+                // after loding text animation
+                // Wait before playing animation
+                window.addEventListener("load", function heroAnimation() {
+                    setTimeout(()=>{
+                        animateUp.play()
+                    }
+                    , 1000);
+                })
+
+
+
+
+
+                ScrollTrigger.create({
+                        trigger:'.horizontal-text-wraper',
+                        scrub: 0,
+                        start: "top bottom",
+                        end: "bottom top",
+                        animation: gsap.to('.sentence-forward', {
+                            x:isDesktop ? -150 : -50,
+                            duration: isDesktop ? 4:3 // reduce duration for mobile
+                        }),
+                        // throttle: isDesktop ? 1:0.1  // Adjust the throttle value as needed
+                    });
+
+                        
+                    const projectWrapers = gsap.utils.toArray('.project-wraper');
+                    projectWrapers.forEach(item => {
+                        gsap.from(item, {
+                            // animation properties
+                            y:isDesktop ? 80 : 60 ,
+                            opacity:0,
+                            duration: 0.8, // reduce duratio
+                            scrollTrigger: {
+                                trigger: item,
+                                toggleActions:"play none none reverse",
+                                // scrollTrigger options
+                                    start: "10% bottom",
+                                    end: "90% top",
+                            }
+                        });
+                    });
+
+
+                    const projectNames = gsap.utils.toArray('.project-name');
+                    projectNames.forEach(item => {
+                        gsap.from(item, {
+                            // animation properties
+                            y:isDesktop ? -80 : -60 ,
+                            opacity:0,
+                            duration: 0.6, // reduce duratio
+
+                            scrollTrigger: {
+                                toggleActions:"play none restart reverse",
+                                trigger: item,
+                                // scrollTrigger options
+
+                                    start: "120% bottom",
+                                    end: "top top",
+                                }
+                        })
+                    });
+
+
+                    const projectTagsWrapers = gsap.utils.toArray('.project-tags-wrapper');
+                    projectTagsWrapers.forEach(item => {
+                        gsap.from(item, {
+                            // animation properties
+                            y:isDesktop ? 40 : 30 ,
+                            opacity:0,
+                            duration: 0.5, // reduce duratio
+                            delay:0.25,
+
+                            scrollTrigger: {
+                                toggleActions:"play none none reverse",
+
+                                trigger: item,
+                                // scrollTrigger options
+                                    start: "30% bottom",
+                                    end: "top top",
+                                }
+                        });
+                    });
+
+
+
+                    // project  hover bg change
+                    projectWrapers.forEach(project=>{
+                        project.addEventListener("mouseover",e=>{
+                            body.style.backgroundColor=project.dataset.color;
+                    
+                        })
+                    })
+                    document.querySelectorAll('.project-wraper').forEach(project=>{
+                        project.addEventListener("mouseout",e=>{
+                            body.style.backgroundColor='var(--current-bg-color)';
+                        })
+                    })
+                    
+                    // project hover scale up
+                    const projects = document.querySelectorAll('.project');
+                    projects.forEach(project=>{
+                        const projectMediaZoom = gsap.timeline();
+                        projectMediaZoom.to(project.children[0].children[0], { scale: 1.05, duration: 0.5 , ease: Power3.out});
+                        projectMediaZoom.pause();
+                        project.addEventListener('mouseenter', () => {
+                            projectMediaZoom.play(); // Play the animation
+                        });
+                        project.addEventListener('mouseleave', () => {
+                            projectMediaZoom.reverse(); // Reverse the animation
+                        });
+                    })
+                  
+
+                    
+                    
+
+
+
+
+
+                // ScrollTrigger.create({
+                //         trigger:'.project-wraper',
+                //         start: "center bottom",
+                //         end: "bottom top",
+                //         animation: gsap.from('.project-wraper', {
+                //             y:isDesktop ? 80 : 60 ,
+                //             opacity:0,
+                //             duration: 1 // reduce duration for mobile
+                //         }),
+                //         throttle: isDesktop ? 1:0.1  // Adjust the throttle value as needed
+                //     });
+
+
+                    
+
+                        // if(isDesktop){
+                        //     gsap.to('.sentence-forward', {
+                        //         ScrollTrigger: {
+                        //         scrub: true,
+                        //         start: "top bottom",
+                        //         end: "bottom top",
+                        //         // pin:true,
+                        //         markers:true,
+                                
+                        //     },
+                        //         x:-400 ,
+                        //         duration:3  
+                        //     }) // The animation to be triggered
+                        //     // ScrollTrigger.create();
+                        // }else{
+                        //     //     ScrollTrigger.create({
+                        //     //     scrub: 0.8,
+                        //     //     start: "top bottom",
+                        //     //     end: "bottom top",
+                        //     //     pin:true,
+                        //     //     markers:true,
+                        //     //     // animation: gsap.to('.sentence-forward', {x:-400 ,duration:3  }) // The animation to be triggered
+                        //     // });
+                        // }
+
+
+
+                // let t3 = gsap.timeline({ scrollTrigger: {
+                //     scrub: 1,
+                //     start: "top 100vh",
+                //     end: "bottom top",
+                //     pin:true,
+                //     markers:true,
+                // }})
+
+                // t3.to('.horizontal-text-wraper',{
+                // y:-600,
+                // // rotation:360,
+                // duration:3
+                // })
+
+                
+
+            </script>
+            <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script> -->
+
+            <!-- <script>
+            
+                    var cursor = document.querySelector('.cursor'),
+        cursorScale = document.querySelectorAll('.cursor-scale'),
+        mouseX = 0,
+        mouseY = 0
+
+        gsap.to({}, 0.016, {
+            repeat: -1,
+
+            onRepeat: function () {
+                gsap.set(cursor, {
+                    css: {
+                        left: mouseX,
+                        top: mouseY
+                    }
+                })
+            }
+        });
+
+        window.addEventListener("mousemove", function (e) {
+            mouseX = e.clientX;
+            mouseY = e.clientY
+        });
+
+        cursorScale.forEach(link => {
+            link.addEventListener('mouseleave', () => {
+                cursor.classList.remove('grow');
+                cursor.classList.remove('grow-small');
+            });
+            link.addEventListener('mousemove', () => {
+                cursor.classList.add('grow');
+                if(link.classList.contains('small')){
+                    cursor.classList.remove('grow');
+                    cursor.classList.add('grow-small');
+                }
+            });
+        });
+
+                    
+            </script> -->
+
+    </body>
 </html>

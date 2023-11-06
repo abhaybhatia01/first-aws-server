@@ -1,0 +1,28 @@
+/* textswitch and animation anime.js*/
+.contact-cta-text{
+    font-size: 4em;
+    font-weight: 100;
+    /* letter-spacing: 1px; */
+    text-transform: uppercase;
+    margin: 0px;
+    color:var(--current-color);
+}
+
+.text-switch .letter {
+    display: inline-block;
+}
+.text-switch-clip {
+    overflow: hidden;
+}
+.footer-cta-text-wrapper {
+    display: flex;
+    text-transform: uppercase;
+    flex-direction: row;
+    align-items: center;
+    font-family: Vanguard, Impact, sans-serif;
+}
+.headline {
+    margin: 0px;
+    white-space: nowrap;
+    margin-right: 0.7rem;
+}
