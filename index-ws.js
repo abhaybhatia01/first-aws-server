@@ -83,5 +83,11 @@ function getCounts(){
 function shutdownDB(){
   console.log("Shutting down db")
   getCounts();
-  db.close();
+  db.close((err) => {
+    if (err) {
+      console.error('Error closing the database:', err.message);
+    } else {
+      console.log('Database closed.');
+    }
+  });
 }
